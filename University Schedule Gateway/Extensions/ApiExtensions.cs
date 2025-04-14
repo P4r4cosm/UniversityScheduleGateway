@@ -48,6 +48,12 @@ public static class ApiExtensions
                     }
                 };
             });
-        services.AddAuthorization();
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy("AuthenticatedUserPolicy", policy =>
+            {
+                policy.RequireAuthenticatedUser();
+            });
+        });
     }
 }
